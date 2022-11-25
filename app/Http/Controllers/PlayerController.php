@@ -30,30 +30,9 @@ class PlayerController extends Controller
      */
     public function create()
     {
-        // $request->validate([
-        //     'first_name' => 'required',
-        //     'last_name' => 'required',
-        //     'dob' => 'required|max:100',
-        //     'player_number' =>'required'
-        // ]);
+        return view('players.create');
 
-        // $img = $request->file('img');
-        // $extension = $img->getClientOriginalExtension();
-        // $filename = date('Y-m-d-His') . '_' . $request->input('title'). '.'. $extension;
-
-        // $path = $img->storeAs('public/images', $filename);
-
-        Player::create([
-            // Ensure you have the use statement for
-            
-           'user_id' => Auth::id(),
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
-            'dob' => $request->dob,
-            'player_number' => $request->player_number,
-            'img' => $filename
-            
-        ]);
+        
     }
 
     /**
@@ -64,7 +43,32 @@ class PlayerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'dob' => 'required|max:100',
+            'player_number' =>'required'
+        ]);
+
+        $img = $request->file('img');
+        $extension = $img->getClientOriginalExtension();
+        $filename = date('Y-m-d-His') . '_' . $request->input('title'). '.'. $extension;
+
+        $path = $img->storeAs('public/images', $filename);
+        Player::create([
+            // Ensure you have the use statement for
+            
+            'user_id' => Auth::id(),
+            'first_name' =>$request->first_name,
+            'last_name' =>$request->last_name,
+            'dob' =>  $request->dob,
+            'player_number' => $request->player_number,
+            'img' => $filename
+            
+        ]);
+
+        return to_route('players.index');
     }
 
     /**
@@ -98,14 +102,22 @@ class PlayerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Player $player)
     {
+        // $request->validate([
+        //     'first_name' => $request->first_name,
+        //     'last_name' => $request->last_name,
+        //     'dob' => $request->dob,
+        //     'player_number' => $request->player_number,
+        //     // 'img'=> $request->img
+        // ]);
+
         $player->update([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'dob' => $request->dob,
-            'player_number' => $request->player_number,
-            'img'=> $request->img
+            'player_number' => $request->player_number
+            // 'img'=> $request->img
         ]);
 
         return to_route('players.show', $player);
@@ -117,7 +129,7 @@ class PlayerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Player $player)
     {
         $player->delete();
     
