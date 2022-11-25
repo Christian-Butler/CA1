@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('last_name');
             $table->date('dob');
             $table->integer('player_number');
-            // $table->string('img');
+            $table->string('img');
             $table->timestamps();
         });
     }
