@@ -21,7 +21,7 @@ class PlayerFactory extends Factory
             'last_name' =>$this->faker->name,
             'dob' =>$this->faker->date,
             'player_number' =>$this->faker->randomDigit,
-            // 'img'=>'placeholder.png'
+            'img'=>'placeholder.png'
             
             
         ];
