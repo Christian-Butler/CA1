@@ -30,6 +30,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::resource('/players',PlayerController::class)->middleware(['auth']);
+Route::get('/home',[App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
+
+Route::resource('/admin/players', AdminPlayerController::class)->middleware(['auth'])->names('admin.players');
+Route::resource('/user/players', UserPlayerController::class)->middleware(['auth'])->names('user.players')->only(['index', 'show']);
+
+
 
 require __DIR__.'/auth.php';
