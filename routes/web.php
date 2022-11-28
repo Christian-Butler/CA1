@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PlayerController;
+use App\Http\Controllers\PlayerController as AdminPlayerController;
+use App\Http\Controllers\PlayerController as UserPlayerController;
 use App\Http\Controllers\ProfileController;
 
 /*
