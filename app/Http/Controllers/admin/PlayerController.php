@@ -21,7 +21,7 @@ class PlayerController extends Controller
     {
        
         $user = Auth::user();
-        $user = authorizeRoles('admin');
+        $user->authorizeRoles('admin');
 
          $players = Player::paginate(10);
         // dd($players);
