@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PlayerController as AdminPlayerController;
-use App\Http\Controllers\PlayerController as UserPlayerController;
+use App\Http\Controllers\admin\PlayerController as AdminPlayerController;
+use App\Http\Controllers\user\PlayerController as UserPlayerController;
 use App\Http\Controllers\ProfileController;
 
 /*
@@ -30,7 +30,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/home',[App\Http\Controllers\HomeController::class, 'index'])->name('home.index');
+Route::get('/home',[App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::resource('/admin/players', AdminPlayerController::class)->middleware(['auth'])->names('admin.players');
 Route::resource('/user/players', UserPlayerController::class)->middleware(['auth'])->names('user.players')->only(['index', 'show']);
