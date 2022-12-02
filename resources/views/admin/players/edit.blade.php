@@ -55,13 +55,13 @@
                          autocomplete="off"
                          :value="@old('player_number', $player->player_number)"></x-text-input>
 
-                         {{-- <x-file-input
+                         <x-file-input
                             type="file"
                             name="img"
                             placeholder="Book"
                             class="w-full mt-6"
                             field="book_image">
-                         </x-file-input> --}}
+                         </x-file-input>
 
                          
                          

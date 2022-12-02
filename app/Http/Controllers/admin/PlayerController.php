@@ -86,11 +86,18 @@ class PlayerController extends Controller
      */
     public function show($id)
     {
-        $player = Player::where('id', $id)->firstOrFail();
-        if($player->user_id != Auth::user()){
+        $user = Auth::user();
+        $user->authorizeRoles('admin');
+
+        if(!Auth::id()) {
             return abort(403);
         }
-        return view('players.show')->with('player', $player);
+
+        $player = Player::where('id', $id)->firstOrFail();
+        // if($player->user_id != Auth::user()){
+        //     return abort(403);
+        // }
+        return view('admin.players.show')->with('player', $player);
     }
 
     /**
@@ -102,7 +109,7 @@ class PlayerController extends Controller
     public function edit($id)
     {
         $player = Player::where('id', $id)->firstOrFail();
-        return view('players.edit')->with('player', $player);
+        return view('admin.players.edit')->with('player', $player);
     }
 
     /**
@@ -130,7 +137,7 @@ class PlayerController extends Controller
             // 'img'=> $request->img
         ]);
 
-        return to_route('players.show', $player);
+        return to_route('admin.players.show', $player);
     }
 
     /**
