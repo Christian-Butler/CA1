@@ -21,7 +21,7 @@ class PlayerController extends Controller
     {
        
         $user = Auth::user();
-        $user = authorizeRoles('user');
+        $user->authorizeRoles('user');
 
          $players = Player::paginate(10);
         // dd($players);
@@ -32,9 +32,9 @@ class PlayerController extends Controller
     {
 
         $player = Player::where('id', $id)->firstOrFail();
-        if($player->user_id != Auth::user()){
+        if(!Auth::id()) {
             return abort(403);
-        }
+          }
         return view('user.players.show')->with('player', $player);
     }
 
