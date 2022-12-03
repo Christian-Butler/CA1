@@ -23,12 +23,13 @@ class PlayerController extends Controller
         $user = Auth::user();
         $user->authorizeRoles('user');
 
-         $players = Player::paginate(10);
+         $players = Player::paginate(5);
+         $players = Player::with('teams')->get();
         // dd($players);
         return view('user.players.index')->with('players', $players);
     }
     
-    public function show($id)
+    public function show( $id)
     {
 
         $player = Player::where('id', $id)->firstOrFail();

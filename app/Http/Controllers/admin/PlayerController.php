@@ -23,7 +23,7 @@ class PlayerController extends Controller
         $user = Auth::user();
         $user->authorizeRoles('admin');
 
-         $players = Player::paginate(10);
+         $players = Player::with('teams')-get();
         // dd($players);
         return view('admin.players.index')->with('players', $players);
     }
