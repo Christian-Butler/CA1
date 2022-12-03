@@ -27,6 +27,9 @@
                         {{-- Creates the route link to the player show view page --}}
                     <a href="{{ route('user.players.show', $player->id) }}">{{ $player->player_number }}</a>
                     </h2>
+                    <h3 class="font-bold text-1x1"> <strong> Team Name </strong>
+                    {{$player->teams->name}}
+                    </h3>
                     {{-- pulls and displays the players first name from the database --}}
                     <p class="mt-2">
                         {{ $player->first_name }}
@@ -45,7 +48,7 @@
             <p>No Players</p>
             @endforelse
             <!-- This line of code adds the pagination for the index page-->
-            {{$players->links()}}
+            {{-- {{$players->links()}} --}}
         </div>
     </div>
 </x-app-layout>
