@@ -15,5 +15,10 @@ class Player extends Model
         'player_number',
         'img'
      
-         ];
+    ];
+
+    public function teams()
+    {
+        return $this->belongsTo(Teams::class);
+    }
 }
