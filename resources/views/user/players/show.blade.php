@@ -24,6 +24,7 @@
                 <div class="my-6 p-6 bg-white border-b border-gray-200 shadow-sm sm:rounded-lg">
                     <h2 class="font-bold text-2xl">
                     </h2>
+                    <p>{{$player->team_name}}</p>
                     <p class="mt-2">
                         {{ $player->first_name }}
                     </p>
