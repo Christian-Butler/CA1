@@ -22,8 +22,7 @@ class PlayerController extends Controller
        
         $user = Auth::user();
         $user->authorizeRoles('admin');
-
-         $players = Player::with('teams')-get();
+        $players = Player::with('teams')->get();
         // dd($players);
         return view('admin.players.index')->with('players', $players);
     }
@@ -36,7 +35,7 @@ class PlayerController extends Controller
     public function create()
     {
         $user = Auth::user();
-        $user = authorizeRoles('admin');
+        $user->authorizeRoles('admin');
         return view('admin.players.create');
 
         
