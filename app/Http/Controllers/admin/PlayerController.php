@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Teams;
 use App\Models\Player;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -36,7 +37,9 @@ class PlayerController extends Controller
     {
         $user = Auth::user();
         $user->authorizeRoles('admin');
-        return view('admin.players.create');
+
+        $teams = Teams::all();
+        return view('admin.players.create')->with('teams', $teams);
 
         
     }
