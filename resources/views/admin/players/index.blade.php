@@ -27,6 +27,9 @@
                         {{-- Creates the route link to the player show view page --}}
                     <a href="{{ route('admin.players.show', $player->id) }}">{{ $player->player_number }}</a>
                     </h2>
+                    <h3 class="font-bold text-1x1"> <strong> Team Name </strong>
+                        {{$player->teams->name}}
+                    </h3>
                     {{-- pulls and displays the players first name from the database --}}
                     <p class="mt-2">
                         {{ $player->first_name }}
