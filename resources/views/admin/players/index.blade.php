@@ -45,7 +45,6 @@
             <p>No Players</p>
             @endforelse
             <!-- This line of code adds the pagination for the index page-->
-            {{$players->links()}}
         </div>
     </div>
 </x-app-layout>
