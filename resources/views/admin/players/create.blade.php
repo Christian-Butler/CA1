@@ -72,9 +72,9 @@
                          <x-file-input
                         type="file"
                         name="img"
-                        placeholder="Book"
+                        placeholder="player image"
                         class="w-full mt-6"
-                        field="book_image">
+                        field="player_image">
                         </x-file-input>
                         
                         <div class="form-group">
@@ -92,7 +92,6 @@
                      
                          <x-primary-button class="mt-6">Save Note</x-primary-button>
                     </form>
-     
                 </div>
             
                 
