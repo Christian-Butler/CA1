@@ -38,7 +38,7 @@ class PlayerController extends Controller
         $user = Auth::user();
         $user->authorizeRoles('admin');
 
-        $teams = Teams::all();
+        
         return view('admin.players.create')->with('teams', $teams);
 
         
@@ -53,11 +53,13 @@ class PlayerController extends Controller
     public function store(Request $request)
     {
 
+        $teams = Teams::all();
         $request->validate([
             'first_name' => 'required',
             'last_name' => 'required',
             'dob' => 'required|max:100',
-            'player_number' =>'required'
+            'player_number' =>'required',
+            'teams_id' => 'required'
         ]);
 
         $img = $request->file('img');
@@ -73,7 +75,8 @@ class PlayerController extends Controller
             'last_name' =>$request->last_name,
             'dob' =>  $request->dob,
             'player_number' => $request->player_number,
-            'img' => $filename
+            'img' => $filename,
+            'teams_id' => $request ->teams_id
             
         ]);
 
@@ -110,8 +113,10 @@ class PlayerController extends Controller
      */
     public function edit($id)
     {
+        // e
         $player = Player::where('id', $id)->firstOrFail();
-        return view('admin.players.edit')->with('player', $player);
+        $teams = Teams::where('id', $id)->firstOrFail();
+        return view('admin.players.edit')->with('player', $player)->with('teams', $teams);
     }
 
     /**
@@ -123,6 +128,8 @@ class PlayerController extends Controller
      */
     public function update(Request $request, Player $player)
     {
+        $user->authorizeRoles('admin');
+
         // $request->validate([
         //     'first_name' => $request->first_name,
         //     'last_name' => $request->last_name,
@@ -135,7 +142,8 @@ class PlayerController extends Controller
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'dob' => $request->dob,
-            'player_number' => $request->player_number
+            'player_number' => $request->player_number,
+            'teams_id' => $request->teams_id
             // 'img'=> $request->img
         ]);
 
@@ -151,7 +159,7 @@ class PlayerController extends Controller
     public function destroy(Player $player)
     {
         $player->delete();
-    
+        $user->authorizeRoles('admin');
 
         return to_route('players.index');
     }
