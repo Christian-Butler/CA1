@@ -63,6 +63,17 @@
                             field="book_image">
                          </x-file-input>
 
+                         <div class="form-group">
+                            <label for="teams">Teams</label>
+                            <select name="teams_id">
+                                @foreach ($teams as $team)
+                                <option value="{{$team->id}}" {{(("teams_id") == $team->id) ? "selected" : ""}}>
+                                    {{$team->name}}
+                                </option>
+                                @endforeach
+                            </select>
+                        </div>
+
                          
                          
                      
