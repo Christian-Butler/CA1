@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Teams;
+use App\Models\Team;
 use App\Models\Player;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -23,8 +23,8 @@ class PlayerController extends Controller
        
         $user = Auth::user();
         $user->authorizeRoles('admin');
-        $players = Player::with('teams')->get();
-        // dd($players);
+        $players = Player::with('team')->get();
+    
         return view('admin.players.index')->with('players', $players);
     }
 
@@ -38,9 +38,10 @@ class PlayerController extends Controller
         $user = Auth::user();
         $user->authorizeRoles('admin');
 
-        
-        return view('admin.players.create')->with('teams', $teams);
+        $teams = Team::all();
 
+       // dd($teams);
+        return view('admin.players.create')->with('teams', $teams);
         
     }
 
@@ -53,7 +54,7 @@ class PlayerController extends Controller
     public function store(Request $request)
     {
 
-        $teams = Teams::all();
+        $teams = Team::all();
         $request->validate([
             'first_name' => 'required',
             'last_name' => 'required',
@@ -115,7 +116,7 @@ class PlayerController extends Controller
     {
         // e
         $player = Player::where('id', $id)->firstOrFail();
-        $teams = Teams::where('id', $id)->firstOrFail();
+        $teams = Team::all();
         return view('admin.players.edit')->with('player', $player)->with('teams', $teams);
     }
 
