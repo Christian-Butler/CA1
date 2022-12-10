@@ -16,6 +16,12 @@
                         {{ __('Home') }}
                     </x-nav-link>
                 </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('home.teams.index')" :active="request()->routeIs('home.teams.index')">
+                        {{ __('Teams') }} 
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->

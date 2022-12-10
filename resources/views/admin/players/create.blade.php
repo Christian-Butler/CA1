@@ -25,7 +25,7 @@
                          name="first_name" 
                          field="First Name" 
                          placeholder="First Name" 
-                         class="w-full"  
+                         class="w-full py-px"  
                          autocomplete="off"
                          :value="@old('First Name')"></x-text-input>
 
@@ -37,7 +37,7 @@
                          name="last_name" 
                          field="Last Name" 
                          placeholder="Last Name" 
-                         class="w-full"  
+                         class="w-full py-px"  
                          autocomplete="off"
                          :value="@old('Last Name')"></x-text-input>
 
@@ -49,7 +49,7 @@
                          name="dob" 
                          field="Date of Birth" 
                          placeholder="Date of Birth" 
-                         class="w-full"  
+                         class="w-full py-px"  
                          autocomplete="off"
                          :value="@old('Date of Birth')"></x-text-input>
 
@@ -61,7 +61,7 @@
                          name="player_number" 
                          field="Player Number" 
                          placeholder="Player Number" 
-                         class="w-full"  
+                         class="w-full py-px"  
                          autocomplete="off"
                          :value="@old('Player Number')"></x-text-input>
 
@@ -73,16 +73,20 @@
                         type="file"
                         name="img"
                         placeholder="player image"
-                        class="w-full mt-6"
+                        class="w-full mt-6 py-px"
                         field="player_image">
                         </x-file-input>
                         
+                      
                         <div class="form-group">
                             <label for="teams">Teams</label>
-                            <select name="teams_id">
+                            <select name="team_id">
+                            
                                 @foreach ($teams as $team)
-                                <option value="{{$team->id}}" {{(old("teams_id") == $team->id) ? "selected" : ""}}>
+                                <option value="{{$team->id}}" {{("team_id") == $team->id ? "selected" : ""}}>
+                                    {{$team->team_name}}
                                 </option>
+
                                 @endforeach
                             </select>
                         </div>

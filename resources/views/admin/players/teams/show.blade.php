@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Players') }}
+            {{ __('Teams') }}
         </h2>
     </x-slot>
 
@@ -13,16 +13,16 @@
             </x-alert-success> --}}
             <div class="flex">
                 <p class="opacity-70">
-                    <strong>Created at: </strong> {{ $player->created_at->diffForHumans()}}
+                    <strong>Created at: </strong> {{ $team->created_at->diffForHumans()}}
                 </p>
 
                 <p class="opacity-70 ml-8">
-                    <strong>Updated at: </strong> {{ $player->updated_at->diffForHumans()}}
+                    <strong>Updated at: </strong> {{ $team->updated_at->diffForHumans()}}
                 </p>
 
-                <a href="{{ route('admin.players.edit', $player->id)}}" class="btn-link ml-6 pl-6 d-inline-flex vertical-align: middle;">Edit Note</a>
+                <a href="{{ route('admin.teams.edit', $team->id)}}" class="btn-link ml-6 pl-6 d-inline-flex vertical-align: middle;">Edit Note</a>
 
-                <form action="{{ route('admin.players.destroy', $player) }}" method="post">
+                <form action="{{ route('admin.teams.destroy', $team) }}" method="post">
                     @method('delete')
                     @csrf
                     <button type="submit" class="btn btn-danger ml-4" fonclick="return confirm('Are you sure you wish to delete this player')"> Delete Note</button>
@@ -33,27 +33,11 @@
                     <h2 class="font-bold text-2xl">
                     </h2>
                     <h3 class="font-bold text-1x1"> <strong> Team Name </strong>
-                        {{$player->team->team_name}}
+                        {{$team->team_name}}
                     </h3>
                     <p class="mt-2">
-                        {{ $player->first_name }}
+                        {{ $team->first_name }}
                     </p>
-
-                    <p>
-                        {{$player->last_name}}
-                    </p>
-
-                    <p>
-                        {{$player->player_number}}
-                    </p>
-
-                    <p>
-                        {{$player->dob}}
-                    </p>
-
-                    <img src="{{asset('storage/images/' . $player->img) }}" alt="player image">
-
-                    <p></p>
                 </div>
         </div>
     </div>
