@@ -17,8 +17,8 @@ class Player extends Model
      
     ];
 
-    public function teams()
+    public function team()
     {
-        return $this->belongsTo(Teams::class);
+        return $this->belongsTo(Team::class);
     }
 }
