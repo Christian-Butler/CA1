@@ -31,6 +31,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/home',[App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home/teams',[App\Http\Controllers\HomeController::class, 'teamIndex'])->name('home.teams.index');
 
 Route::resource('/admin/players', AdminPlayerController::class)->middleware(['auth'])->names('admin.players');
 Route::resource('/user/players', UserPlayerController::class)->middleware(['auth'])->names('user.players')->only(['index', 'show']);
