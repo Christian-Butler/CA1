@@ -82,6 +82,7 @@
                             <select name="teams_id">
                                 @foreach ($teams as $team)
                                 <option value="{{$team->id}}" {{(old("teams_id") == $team->id) ? "selected" : ""}}>
+                                    {{$teams->team_name}}
                                 </option>
                                 @endforeach
                             </select>
