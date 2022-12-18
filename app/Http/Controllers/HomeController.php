@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -34,7 +35,7 @@ class HomeController extends Controller
         return redirect()->route($home);
      }
 
-     public function teamsIndex (Request $request)
+     public function teamIndex (Request $request)
      {
         $user = Auth::user();
         $home = 'home';

@@ -28,7 +28,7 @@
                     <a href="{{ route('user.players.show', $player->id) }}">{{ $player->player_number }}</a>
                     </h2>
                     <h3 class="font-bold text-1x1"> <strong> Team Name </strong>
-                    {{$player->teams->name}}
+                    {{$player->team_name}}
                     </h3>
                     {{-- pulls and displays the players first name from the database --}}
                     <p class="mt-2">

@@ -55,13 +55,13 @@ class PlayerController extends Controller
     {
 
         $teams = Team::all();
-        $request->validate([
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'dob' => 'required|max:100',
-            'player_number' =>'required',
-            'teams_id' => 'required'
-        ]);
+        // $request->validate([
+        //     'first_name' => 'required',
+        //     'last_name' => 'required',
+        //     'dob' => 'required|max:100',
+        //     'player_number' =>'required',
+        //     'teams_id' => 'required'
+        // ]);
 
         $img = $request->file('img');
         $extension = $img->getClientOriginalExtension();
@@ -77,11 +77,11 @@ class PlayerController extends Controller
             'dob' =>  $request->dob,
             'player_number' => $request->player_number,
             'img' => $filename,
-            'teams_id' => $request ->teams_id
+            'team_id' => $request->team_id
             
         ]);
 
-        return to_route('players.index');
+        return to_route('admin.players.index');
     }
 
     /**
@@ -114,7 +114,7 @@ class PlayerController extends Controller
      */
     public function edit($id)
     {
-        // e
+        
         $player = Player::where('id', $id)->firstOrFail();
         $teams = Team::all();
         return view('admin.players.edit')->with('player', $player)->with('teams', $teams);
@@ -129,6 +129,7 @@ class PlayerController extends Controller
      */
     public function update(Request $request, Player $player)
     {
+        $user = Auth::user();
         $user->authorizeRoles('admin');
 
         // $request->validate([
@@ -159,9 +160,10 @@ class PlayerController extends Controller
      */
     public function destroy(Player $player)
     {
-        $player->delete();
+        $user = Auth::user();
         $user->authorizeRoles('admin');
+        $player->delete();
 
-        return to_route('players.index');
+        return to_route('admin.players.index');
     }
 }

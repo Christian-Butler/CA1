@@ -25,7 +25,7 @@
                     <h2 class="font-bold text-2xl">
                     </h2>
                     <h3 class="font-bold text-1x1"> <strong> Team Name </strong>
-                        {{$player->teams->name}}
+                        {{$player->team->name}}
                     </h3>
                     <p class="mt-2">
                         {{ $player->first_name }}
